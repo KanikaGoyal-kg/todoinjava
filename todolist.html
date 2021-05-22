@@ -3,27 +3,28 @@
     <link rel="stylesheet" href="css/todolist.css" />
   </head>
   <body>
-      <table>
-          <caption>Your details will shown when you enter</caption>
-          <thead>
+      <div class="data-div">
+      <table class="table-div">
+          <caption class="caption-style">Your details will shown when you enter</caption>
+          <thead class="data-style">
               <tr>
                   <th>Name</th>
                   <th>Country code</th>
                   <th>Mobile number</th>
               </tr>
           </thead>
-          <tbody>
+          <tbody class="data-style">
               <tr>
-                  <td>Kanika Goyal</td>
-                  <td>6666</td>
-                  <td>000000000</td>
+                  <td >Kanika Goyal</td>
+                  <td >6666</td>
+                  <td >000000000</td>
               </tr>
           </tbody>
       </table>
     <button onclick="document.getElementById('modal').style.display='block'">
       Add
     </button>
-    
+    </div>
     <div class="main-div" id="modal">
     <div class="div">
       <h1 class="header">Person data</h1>
