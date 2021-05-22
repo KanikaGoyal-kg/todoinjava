@@ -1,11 +1,21 @@
 .main-div {
+    background-color: #8e44ad;
+    display: none;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+}
+.div {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100vh;
     flex-direction: column;
-    background-color: #8e44ad;
 }
 .header {
     color: white;

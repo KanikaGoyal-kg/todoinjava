@@ -1,23 +1,46 @@
 <html>
-    <head>
-        <link rel="stylesheet" href="css/todolist.css">
-    </head>
-    <body>
-        <div class="main-div">
-        <h1 class="header">Person data</h1>
-        <div class="input-main-div">
+  <head>
+    <link rel="stylesheet" href="css/todolist.css" />
+  </head>
+  <body>
+      <table>
+          <caption>Your details will shown when you enter</caption>
+          <thead>
+              <tr>
+                  <th>Name</th>
+                  <th>Country code</th>
+                  <th>Mobile number</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td>Kanika Goyal</td>
+                  <td>6666</td>
+                  <td>000000000</td>
+              </tr>
+          </tbody>
+      </table>
+    <button onclick="document.getElementById('modal').style.display='block'">
+      Add
+    </button>
+    
+    <div class="main-div" id="modal">
+    <div class="div">
+      <h1 class="header">Person data</h1>
+      <div class="input-main-div">
         <div>
-            <input class="input-div" placeholder="Enter your first name" />
+          <input class="input-div" placeholder="Enter your first name" />
         </div>
         <div>
-            <input class="input-div" placeholder="Enter yout last name" />
+          <input class="input-div" placeholder="Enter yout last name" />
         </div>
         <div class="input-one-row">
-            <input class="input-row" placeholder="Enter country code" />
-            <input class="input-row" placeholder="Enter mobile number" />
+          <input class="input-row" placeholder="Enter country code" />
+          <input class="input-row" placeholder="Enter mobile number" />
         </div>
-        </div>
-        <button class="button">Submit</button>
-        </div>
-    </body>
+      </div>
+      <button class="button">Submit</button>
+    </div>
+    </div>
+  </body>
 </html>
