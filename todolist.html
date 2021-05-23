@@ -1,10 +1,11 @@
 <html>
   <head>
     <link rel="stylesheet" href="css/todolist.css" />
+    <script src="js/main.js"></script>
   </head>
   <body>
-      <div class="data-div">
-      <table class="table-div">
+      <div class="data-div" id="opendatatable">
+      <table class="table-div" id="addtasklist">
           <caption class="caption-style">Your details will shown when you enter</caption>
           <thead class="data-style">
               <tr>
@@ -13,13 +14,7 @@
                   <th>Mobile number</th>
               </tr>
           </thead>
-          <tbody class="data-style">
-              <tr>
-                  <td >Kanika Goyal</td>
-                  <td >6666</td>
-                  <td >000000000</td>
-              </tr>
-          </tbody>
+        
       </table>
     <button onclick="document.getElementById('modal').style.display='block'" class="buttonFirst">
       Fill Details
@@ -30,17 +25,17 @@
       <h1 class="header">Person data</h1>
       <div class="input-main-div">
         <div>
-          <input class="input-div" placeholder="Enter your first name" />
+          <input class="input-div" placeholder="Enter your first name" id="addtaskinput" />
         </div>
         <div>
-          <input class="input-div" placeholder="Enter yout last name" />
+          <input class="input-div" placeholder="Enter yout last name" id="addtaskinput"/>
         </div>
         <div class="input-one-row">
-          <input class="input-row" placeholder="Enter country code" />
-          <input class="input-row" placeholder="Enter mobile number" />
+          <input class="input-row" placeholder="Enter country code" id="addtaskinput"/>
+          <input class="input-row" placeholder="Enter mobile number" id="addtaskinput"/>
         </div>
       </div>
-      <button class="button">Submit</button>
+      <button class="button" id="addtaskbtn" onclick="document.getElementById('opendatatable').style.display='block'">Submit</button>
     </div>
     </div>
   </body>
