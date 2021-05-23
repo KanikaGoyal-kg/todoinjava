@@ -70,6 +70,7 @@
           lname: "",
           countrycode: "",
           mobilenumber: "",
+          id: "",
         };
         let addtaskinput = document.getElementById("addtaskinput").value;
         let addlname = document.getElementById("addlname").value;
@@ -87,8 +88,14 @@
         } else {
           taskobj = JSON.parse(webtask);
         }
+        datakeys.id = webtask.length + 1;
         taskobj.push(datakeys);
         localStorage.setItem("localtask", JSON.stringify(taskobj));
+       document.getElementById("addtaskinput").value = '';
+         document.getElementById("addlname").value = '';
+         document.getElementById("addcountrycode").value = '';
+        document.getElementById("addnumber").value = '';
+
         showtask();
       };
       function showtask() {
@@ -112,10 +119,10 @@
             "</td>";
           html += "<td class='content'>" + taskobj[i].countrycode + "</td>";
           html += "<td class='content'>" + taskobj[i].mobilenumber + "</td>";
-          html += "<button id='editbutton'>"
+          html += "<button id='edittask' onclick='editupdate(taskobj[i].id)'>"
           html += "<img src='./icons/edit.png' />"
           html += "</button>"
-
+      
           html += "<img class='delete' src='./icons/delete.png' />"
 
           html += "</tr>";
@@ -123,11 +130,14 @@
         html += "</tbody>";
 
         addtasklist.innerHTML = html;
+      
       }
-      document.getElementById('editbutton').onclick = function () {
+     function editupdate (id) {
+        alert(id)
         document.getElementById("modal").style.display = "block";
         document.getElementById("opendatatable").style.display = "none";
       }
+    
     </script>
   </body>
 </html>
