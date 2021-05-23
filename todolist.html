@@ -5,7 +5,7 @@
   </head>
   <body>
       <div class="data-div" id="opendatatable">
-      <table class="table-div" id="addtasklist">
+      <table class="table-div" >
           <caption class="caption-style">Your details will shown when you enter</caption>
           <thead class="data-style">
               <tr>
@@ -14,6 +14,9 @@
                   <th>Mobile number</th>
               </tr>
           </thead>
+          <tbody class="data-style" id="addtasklist">
+
+          </tbody>
         
       </table>
     <button onclick="document.getElementById('modal').style.display='block'" class="buttonFirst">
@@ -28,20 +31,77 @@
           <input class="input-div" placeholder="Enter your first name" id="addtaskinput" />
         </div>
         <div>
-          <input class="input-div" placeholder="Enter yout last name" id="addtaskinput"/>
+          <input class="input-div" placeholder="Enter yout last name" />
         </div>
         <div class="input-one-row">
-          <input class="input-row" placeholder="Enter country code" id="addtaskinput"/>
-          <input class="input-row" placeholder="Enter mobile number" id="addtaskinput"/>
+          <input class="input-row" placeholder="Enter country code" />
+          <input class="input-row" placeholder="Enter mobile number" />
         </div>
       </div>
-      <button class="button" id="addtaskbtn" onclick="document.getElementById('opendatatable').style.display='block'">Submit</button>
+      <button class="button" id="addtaskbtn">Submit</button>
     </div>
     </div>
-    <!-- <script>
+    <script>
       document.getElementById("addtaskbtn").onclick = function () {
-        window.location.replace("opendatatable");
+        document.getElementById('opendatatable').style.display='block';
+        document.getElementById('modal').style.display='none';
+        let datakeys = {fname: '' , lname: '', countrycode: '', mobilenumber: '' }
+        let addtaskinput = document.getElementById("addtaskinput").value;
+        datakeys.fname = addtaskinput
+// let addtaskbtn = document.getElementById("addtaskbtn");
+
+// addtaskbtn.addEventListener("click", function(){
+    alert("kjdsfgjdsv")
+  //  let addtaskinputval = addtaskinput.value;
+
+    let taskobj = [];
+        let webtask = localStorage.getItem("localtask");
+    if (webtask == null) {
+        taskobj = [];
+    }
+    else {
+        taskobj = JSON.parse(webtask);
+    }
+    taskobj.push(datakeys);
+    localStorage.setItem("localtask", JSON.stringify(taskobj));
+    showtask();
+    
+// })
+        
       }
-    </script> -->
+      function showtask() {
+    let webtask = localStorage.getItem("localtask");
+    if (webtask == null) {
+        taskobj = [];
+    }
+    else {
+        taskobj = JSON.parse(webtask);
+    }
+    let html = '';
+    let addtasklist = document.getElementById("addtasklist")
+    // taskobj.forEach((item, index) => {
+    //     html += `   
+    //                 <tr>
+    //                 <td>"+taskobj[item].fname+"</td>
+    //                 <td >6666</td>
+    //                 <td >000000000</td>
+    //                 </tr>`;
+    // });
+    html+=" <tbody class='data-style' id='addtasklist'>";
+
+    for (var i = 0; i < taskobj.length; i++) {
+    html+="<tr>";
+    html+="<td>"+taskobj[i].fname+"</td>";
+    // html+="<td>"+taskobj[i].age+"</td>";
+    // html+="<td>"+taskobj[i].email+"</td>";
+    
+    html+="</tr>";
+
+}
+html+="</tbody>";
+
+    addtasklist.innerHTML = html;
+}
+    </script>
   </body>
 </html>

@@ -2,6 +2,7 @@ let addtaskinput = document.getElementById("addtaskinput");
 let addtaskbtn = document.getElementById("addtaskbtn");
 
 addtaskbtn.addEventListener("click", function(){
+    alert("kjdsfgjdsv")
     addtaskinputval = addtaskinput.value;
     let webtask = localStorage.getItem("localtask");
     if (webtask == null) {
@@ -26,13 +27,12 @@ function showtask() {
     let html = '';
     let addtasklist = document.getElementById("addtasklist")
     taskobj.forEach((item, index) => {
-        html += `   <tbody class="data-style">
+        html += `   
                     <tr>
-                    <td >`${item}`</td>
+                    <td>{item}</td>
                     <td >6666</td>
                     <td >000000000</td>
-                    </tr> 
-                    </tbody>`;
+                    </tr>`;
     });
     addtasklist.innerHTML = html;
 }
