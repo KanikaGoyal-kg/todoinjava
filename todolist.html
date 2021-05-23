@@ -5,13 +5,14 @@
   </head>
   <body>
       <div class="data-div" id="opendatatable">
+      <div class="div-style">
       <table class="table-div" >
           <caption class="caption-style">Your details will shown when you enter</caption>
           <thead class="data-style">
               <tr>
-                  <th>Name</th>
-                  <th>Country code</th>
-                  <th>Mobile number</th>
+                  <th class="content">Name</th>
+                  <th class="content">Country code</th>
+                  <th class="content">Mobile number</th>
               </tr>
           </thead>
           <tbody class="data-style" id="addtasklist">
@@ -23,6 +24,7 @@
       Fill Details
     </button>
     </div>
+  </div>
     <div class="main-div" id="modal">
     <div class="div">
       <h1 class="header">Person data</h1>
@@ -31,11 +33,11 @@
           <input class="input-div" placeholder="Enter your first name" id="addtaskinput" />
         </div>
         <div>
-          <input class="input-div" placeholder="Enter yout last name" />
+          <input class="input-div" placeholder="Enter yout last name" id="addlname"/>
         </div>
         <div class="input-one-row">
-          <input class="input-row" placeholder="Enter country code" />
-          <input class="input-row" placeholder="Enter mobile number" />
+          <input class="input-row" placeholder="Enter country code" id="addcountrycode"/>
+          <input class="input-row" placeholder="Enter mobile number" id="addnumber"/>
         </div>
       </div>
       <button class="button" id="addtaskbtn">Submit</button>
@@ -47,7 +49,15 @@
         document.getElementById('modal').style.display='none';
         let datakeys = {fname: '' , lname: '', countrycode: '', mobilenumber: '' }
         let addtaskinput = document.getElementById("addtaskinput").value;
-        datakeys.fname = addtaskinput
+        let addlname = document.getElementById("addlname").value;
+        let addcountrycode = document.getElementById("addcountrycode").value;
+        let addnumber = document.getElementById("addnumber").value;
+
+        datakeys.fname = addtaskinput;
+        datakeys.lname = addlname;
+        datakeys.countrycode = addcountrycode;
+        datakeys.mobilenumber = addnumber;
+        
 // let addtaskbtn = document.getElementById("addtaskbtn");
 
 // addtaskbtn.addEventListener("click", function(){
@@ -91,9 +101,11 @@
 
     for (var i = 0; i < taskobj.length; i++) {
     html+="<tr>";
-    html+="<td>"+taskobj[i].fname+"</td>";
-    // html+="<td>"+taskobj[i].age+"</td>";
-    // html+="<td>"+taskobj[i].email+"</td>";
+    html+="<td class='content'>"+taskobj[i].fname+" "+taskobj[i].lname+"</td>";
+    // html+="<td class='content'>"+taskobj[i].lname+"</td>";
+    html+="<td class='content'>"+taskobj[i].countrycode+"</td>";
+    html+="<td class='content'>"+taskobj[i].mobilenumber+"</td>";
+
     
     html+="</tr>";
 

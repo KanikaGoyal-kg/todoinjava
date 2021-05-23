@@ -9,14 +9,25 @@
 }
 .table-div {
     width: 50%;
-    border-collapse: collapse;
+    /* border-collapse: collapse; */
     border: 1px solid #cecfd5;
     border-left: 1px solid #cecfd5;
     border-right: 1px solid #cecfd5;
 }
+.div-style {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .data-style {
     color: white;
     width: 50%;
+}
+.content {
+    padding-top: 15px;
 }
 .main-div {
     background-color: #8e44ad;
