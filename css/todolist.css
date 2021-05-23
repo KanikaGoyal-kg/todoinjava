@@ -29,6 +29,10 @@
 .content {
     padding-top: 15px;
 }
+.delete {
+    width: 20px;
+    height: 20px;
+}
 .main-div {
     background-color: #8e44ad;
     display: none;
