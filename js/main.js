@@ -12,7 +12,7 @@ addtaskbtn.addEventListener("click", function(){
     }
     taskobj.push(addtaskinputval);
     localStorage.setItem("localtask", JSON.stringify(taskobj));
-    // showtask();
+    showtask();
 })
 
 function showtask() {
