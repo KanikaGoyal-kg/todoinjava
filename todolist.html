@@ -30,6 +30,17 @@
       </div>
     </div>
     <div class="main-div" id="modal">
+      <div class="removeicon" >
+        <img src="./icons/remove.png" onclick='removemodal()'/>
+      </div>
+      <script>
+         function removemodal () {
+        // alert("lsjc")
+        document.getElementById("modal").style.display = "none";
+        document.getElementById("opendatatable").style.display = "block";
+      }
+      
+      </script>
       <div class="div">
         <h1 class="header">Enter details</h1>
         <div class="input-main-div">
@@ -49,12 +60,15 @@
           </div>
           <div class="input-one-row">
             <input
+            type="number"
               class="input-row"
-              placeholder="Enter country code"
+              placeholder="+"
               id="addcountrycode"
             />
+
             <input
-              class="input-row"
+            type="number"
+              class="input-number"
               placeholder="Enter mobile number"
               id="addnumber"
             />
@@ -65,6 +79,7 @@
     </div>
     <script>
       document.getElementById("addtaskbtn").onclick = function () {
+        
         document.getElementById("opendatatable").style.display = "block";
         document.getElementById("modal").style.display = "none";
         let datakeys = {
@@ -74,18 +89,29 @@
           mobilenumber: "",
           id: "",
         };
+        if (datakeys.fname == '') {
+          document.getElementById("modal").style.display = "block";
+        } else if (datakeys.lname == '') {
+          document.getElementById("modal").style.display = "block";
+        } else if (datakeys.countrycode == '') {
+          document.getElementById("modal").style.display = "block";
+        } else if (datakeys.mobilenumber == '') {
+          document.getElementById("modal").style.display = "block";
+        } else {
+          document.getElementById("modal").style.display = "none";
+        }
         let addtaskinput = document.getElementById("addtaskinput").value;
         let addlname = document.getElementById("addlname").value;
         let addcountrycode = document.getElementById("addcountrycode").value;
         let addnumber = document.getElementById("addnumber").value;
-
+        // localStorage.setItem('fname', addtaskinput)
         datakeys.fname = addtaskinput;
         datakeys.lname = addlname;
         datakeys.countrycode = addcountrycode;
         datakeys.mobilenumber = addnumber;
         let taskobj = [];
         let webtask = localStorage.getItem("localtask");
-        if (webtask == null) {
+        if (!webtask ) {
           taskobj = [];
         } else {
           taskobj = JSON.parse(webtask);
@@ -93,6 +119,8 @@
         datakeys.id = webtask.length + 1;
         taskobj.push(datakeys);
         localStorage.setItem("localtask", JSON.stringify(taskobj));
+        alert("jhdhd")
+
        document.getElementById("addtaskinput").value = '';
          document.getElementById("addlname").value = '';
          document.getElementById("addcountrycode").value = '';
@@ -121,7 +149,7 @@
             "</td>";
           html += "<td class='content'>" + taskobj[i].countrycode + "</td>";
           html += "<td class='content'>" + taskobj[i].mobilenumber + "</td>";
-          html += "<button id='edittask' onclick='editupdate(taskobj[i].id)'>"
+          html += "<button id='edittask' onclick='editupdate()'>"
           html += "<img src='./icons/edit.png' />"
           html += "</button>"
       
@@ -134,8 +162,8 @@
         addtasklist.innerHTML = html;
       
       }
-     function editupdate (id) {
-        alert(id)
+     function editupdate () {
+        alert("lsjc")
         document.getElementById("modal").style.display = "block";
         document.getElementById("opendatatable").style.display = "none";
       }
