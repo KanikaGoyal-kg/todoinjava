@@ -40,6 +40,8 @@
         // alert("lsjc")
         document.getElementById("modal").style.display = "none";
         document.getElementById("opendatatable").style.display = "block";
+        document.getElementById("opendatatable").style.opacity = "1";
+
       }
       
       </script>
@@ -49,6 +51,7 @@
         <h1 class="header">Enter details</h1>
         <div class="input-main-div">
           <div>
+            <label class="label">First Name</label>
             <input
               class="input-div"
               placeholder="Enter your first name"
@@ -56,16 +59,22 @@
             />
           </div>
           <div>
+            <label class="label">Last Name</label>
+
             <input
               class="input-div"
               placeholder="Enter yout last name"
               id="addlname"
             />
           </div>
+          <label class="label">Mobile number</label>
+
           <div class="input-one-row">
+
             <input
             type="number"
               class="input-row"
+              required
               placeholder="+"
               id="addcountrycode"
             />
@@ -75,6 +84,7 @@
             step="10"
              min="0" 
              max="10"
+             required
               class="input-number"
               placeholder="Enter mobile number"
               id="addnumber"
@@ -110,16 +120,16 @@
         // var numbers = /^[0-9]+$/;
         if (addtaskinput == '') {
           document.getElementById("modal").style.display = "block";
-          alert('fname')
+          alert('Please enter your first name')
         } else if (addlname == '') {
           document.getElementById("modal").style.display = "block";
-          alert('lname')
+          alert('Please enter your last name')
         } else if (addcountrycode == '') {
           document.getElementById("modal").style.display = "block";
-          alert('code')
+          alert('Please enter country code')
         } else if (addnumber == '') {
           document.getElementById("modal").style.display = "block";
-          alert('number')
+          alert('Please enter mobile number ')
         } else {
           alert('done')
         let taskobj = [];
@@ -155,26 +165,14 @@
         html += " <tbody class='data-style' id='addtasklist'>";
           let i;
         for ( i = 0; i < taskobj.length; i++) {
-          html += "<tr>";
-          html +=
-            "<td class='content'>" +
-            taskobj[i].fname +
-            " " +
-            taskobj[i].lname +
-            "</td>";
-          html += "<td class='content'>" + taskobj[i].countrycode + "</td>";
-          html += "<td class='content'>" + taskobj[i].mobilenumber + "</td>";
-          html += "<button id='edittask' onclick='editupdate()'>"
-          html += "<img src='./icons/edit.png' />"
-          html += "</button>"
-
-          html += "<button id='deletetask' onclick='deleteupdatetask(i)'>"
-            
-          html += "<img class='delete' src='./icons/delete.png' />"
-          html += "</button>"
-          console.log(i)
-          html += "</tr>";
-          
+          html += `<tr>
+            <td class='content'> ${ taskobj[i].fname } ${ taskobj[i].lname }</td>
+            <td class='content'> ${taskobj[i].countrycode }</td>
+            <td class='content'> ${taskobj[i].mobilenumber }</td>
+            <button id="edittask" onclick="editupdate()"><img src='./icons/edit.png' /></button>
+            <button id='deletetask' onclick='deleteupdatetask(${i})'><img class='delete' src='./icons/delete.png' /></button>
+            </tr>
+            `;          
         }
         html += "</tbody>";
 
@@ -185,17 +183,21 @@
      function editupdate () {
         alert("lsjc")
         document.getElementById("modal").style.display = "block";
-        // document.getElementById("opendatatable").style.display = "none";
+        document.getElementById("opendatatable").style.opacity = "0.5";
       }
 
-      function deleteupdatetask (i) {
-        alert('delete')
-        console.log(taskobj,"aaa")
-        const abc = taskobj[i].splice();
-        console.log(abc, "jdhnk")
+      function deleteupdatetask (deletetask) {
+        // var n = onclick.indexOf(taskobj);
+        // alert('delete')
+        console.log(deletetask,"aaa")
+        const abc = taskobj.slice(!deletetask);
+        // console.log(abc, "jdhnk")
 
         taskobj = abc;
-        document.getElementById('opendatatable').style.display = 'block'
+        console.log(taskobj, "6532")
+        localStorage.setItem("localtask", JSON.stringify(taskobj));
+        console.log(abc, 'ywghjr')
+        // document.getElementById('modal').style.display = 'block'
       }
     
     </script>
