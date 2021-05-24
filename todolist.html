@@ -5,7 +5,9 @@
   </head>
   <body>
     <div class="data-div" id="opendatatable">
+    
       <div class="div-style">
+       
         <table class="table-div">
           <caption class="caption-style">
             Contact details
@@ -41,6 +43,8 @@
       }
       
       </script>
+    
+      
       <div class="div">
         <h1 class="header">Enter details</h1>
         <div class="input-main-div">
@@ -68,6 +72,9 @@
 
             <input
             type="number"
+            step="10"
+             min="0" 
+             max="10"
               class="input-number"
               placeholder="Enter mobile number"
               id="addnumber"
@@ -76,6 +83,7 @@
         </div>
         <button class="button" id="addtaskbtn">Submit</button>
       </div>
+  
     </div>
     <script>
       document.getElementById("addtaskbtn").onclick = function () {
@@ -89,17 +97,7 @@
           mobilenumber: "",
           id: "",
         };
-        if (datakeys.fname == '') {
-          document.getElementById("modal").style.display = "block";
-        } else if (datakeys.lname == '') {
-          document.getElementById("modal").style.display = "block";
-        } else if (datakeys.countrycode == '') {
-          document.getElementById("modal").style.display = "block";
-        } else if (datakeys.mobilenumber == '') {
-          document.getElementById("modal").style.display = "block";
-        } else {
-          document.getElementById("modal").style.display = "none";
-        }
+       
         let addtaskinput = document.getElementById("addtaskinput").value;
         let addlname = document.getElementById("addlname").value;
         let addcountrycode = document.getElementById("addcountrycode").value;
@@ -109,17 +107,33 @@
         datakeys.lname = addlname;
         datakeys.countrycode = addcountrycode;
         datakeys.mobilenumber = addnumber;
+        // var numbers = /^[0-9]+$/;
+        if (addtaskinput == '') {
+          document.getElementById("modal").style.display = "block";
+          alert('fname')
+        } else if (addlname == '') {
+          document.getElementById("modal").style.display = "block";
+          alert('lname')
+        } else if (addcountrycode == '') {
+          document.getElementById("modal").style.display = "block";
+          alert('code')
+        } else if (addnumber == '') {
+          document.getElementById("modal").style.display = "block";
+          alert('number')
+        } else {
+          alert('done')
         let taskobj = [];
         let webtask = localStorage.getItem("localtask");
         if (!webtask ) {
           taskobj = [];
         } else {
           taskobj = JSON.parse(webtask);
-        }
         datakeys.id = webtask.length + 1;
+
+        }
         taskobj.push(datakeys);
         localStorage.setItem("localtask", JSON.stringify(taskobj));
-        alert("jhdhd")
+        // alert("jhdhd")
 
        document.getElementById("addtaskinput").value = '';
          document.getElementById("addlname").value = '';
@@ -127,6 +141,7 @@
         document.getElementById("addnumber").value = '';
 
         showtask();
+        }
       };
       function showtask() {
         let webtask = localStorage.getItem("localtask");
@@ -138,8 +153,8 @@
         let html = "";
         let addtasklist = document.getElementById("addtasklist");
         html += " <tbody class='data-style' id='addtasklist'>";
-
-        for (var i = 0; i < taskobj.length; i++) {
+          let i;
+        for ( i = 0; i < taskobj.length; i++) {
           html += "<tr>";
           html +=
             "<td class='content'>" +
@@ -152,20 +167,35 @@
           html += "<button id='edittask' onclick='editupdate()'>"
           html += "<img src='./icons/edit.png' />"
           html += "</button>"
-      
-          html += "<img class='delete' src='./icons/delete.png' />"
 
+          html += "<button id='deletetask' onclick='deleteupdatetask(i)'>"
+            
+          html += "<img class='delete' src='./icons/delete.png' />"
+          html += "</button>"
+          console.log(i)
           html += "</tr>";
+          
         }
         html += "</tbody>";
 
         addtasklist.innerHTML = html;
       
       }
+      
      function editupdate () {
         alert("lsjc")
         document.getElementById("modal").style.display = "block";
-        document.getElementById("opendatatable").style.display = "none";
+        // document.getElementById("opendatatable").style.display = "none";
+      }
+
+      function deleteupdatetask (i) {
+        alert('delete')
+        console.log(taskobj,"aaa")
+        const abc = taskobj[i].splice();
+        console.log(abc, "jdhnk")
+
+        taskobj = abc;
+        document.getElementById('opendatatable').style.display = 'block'
       }
     
     </script>
