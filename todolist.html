@@ -5,9 +5,7 @@
   </head>
   <body>
     <div class="data-div" id="opendatatable">
-    
       <div class="div-style">
-       
         <table class="table-div">
           <caption class="caption-style">
             Contact details
@@ -22,31 +20,28 @@
           <tbody class="data-style" id="addtasklist"></tbody>
         </table>
         <div class="button-div">
-        <button
-          onclick="document.getElementById('modal').style.display='block'"
-          class="buttonFirst"
-        >
-          Add contacts
-        </button>
+          <button
+            onclick="document.getElementById('modal').style.display='block'"
+            class="buttonFirst"
+          >
+            Add contacts
+          </button>
         </div>
       </div>
     </div>
     <div class="main-div" id="modal">
-      <div class="removeicon" >
-        <img src="./icons/remove.png" onclick='removemodal()'/>
+      <div class="removeicon">
+        <img src="./icons/remove.png" onclick="removemodal()" />
       </div>
       <script>
-         function removemodal () {
-        // alert("lsjc")
-        document.getElementById("modal").style.display = "none";
-        document.getElementById("opendatatable").style.display = "block";
-        document.getElementById("opendatatable").style.opacity = "1";
-
-      }
-      
+        function removemodal() {
+          // alert("lsjc")
+          document.getElementById("modal").style.display = "none";
+          document.getElementById("opendatatable").style.display = "block";
+          document.getElementById("opendatatable").style.opacity = "1";
+        }
       </script>
-    
-      
+
       <div class="div">
         <h1 class="header">Enter details</h1>
         <div class="input-main-div">
@@ -70,9 +65,8 @@
           <label class="label">Mobile number</label>
 
           <div class="input-one-row">
-
             <input
-            type="number"
+              type="number"
               class="input-row"
               required
               placeholder="+"
@@ -80,11 +74,11 @@
             />
 
             <input
-            type="number"
-            step="10"
-             min="0" 
-             max="10"
-             required
+              type="number"
+              step="10"
+              min="0"
+              max="10"
+              required
               class="input-number"
               placeholder="Enter mobile number"
               id="addnumber"
@@ -93,11 +87,9 @@
         </div>
         <button class="button" id="addtaskbtn">Submit</button>
       </div>
-  
     </div>
     <script>
       document.getElementById("addtaskbtn").onclick = function () {
-        
         document.getElementById("opendatatable").style.display = "block";
         document.getElementById("modal").style.display = "none";
         let datakeys = {
@@ -107,7 +99,7 @@
           mobilenumber: "",
           id: "",
         };
-       
+
         let addtaskinput = document.getElementById("addtaskinput").value;
         let addlname = document.getElementById("addlname").value;
         let addcountrycode = document.getElementById("addcountrycode").value;
@@ -118,39 +110,39 @@
         datakeys.countrycode = addcountrycode;
         datakeys.mobilenumber = addnumber;
         // var numbers = /^[0-9]+$/;
-        if (addtaskinput == '') {
+        if (addtaskinput == "") {
           document.getElementById("modal").style.display = "block";
-          alert('Please enter your first name')
-        } else if (addlname == '') {
+          alert("Please enter your first name");
+        } else if (addlname == "") {
           document.getElementById("modal").style.display = "block";
-          alert('Please enter your last name')
-        } else if (addcountrycode == '') {
+          alert("Please enter your last name");
+        } else if (addcountrycode == "") {
           document.getElementById("modal").style.display = "block";
-          alert('Please enter country code')
-        } else if (addnumber == '') {
+          alert("Please enter country code");
+        } else if (addnumber == "") {
           document.getElementById("modal").style.display = "block";
-          alert('Please enter mobile number ')
+          alert("Please enter mobile number ");
         } else {
-          alert('done')
-        let taskobj = [];
-        let webtask = localStorage.getItem("localtask");
-        if (!webtask ) {
-          taskobj = [];
-        } else {
-          taskobj = JSON.parse(webtask);
-        datakeys.id = webtask.length + 1;
+          alert("done");
+          let taskobj = [];
+          let webtask = localStorage.getItem("localtask");
+          if (!webtask) {
+            taskobj = [];
+          } else {
+            taskobj = JSON.parse(webtask);
+            datakeys.id = webtask.length + 1;
+          }
+          // if (datakeys.id)
+          taskobj.push(datakeys);
+          localStorage.setItem("localtask", JSON.stringify(taskobj));
+          // alert("jhdhd")
 
-        }
-        taskobj.push(datakeys);
-        localStorage.setItem("localtask", JSON.stringify(taskobj));
-        // alert("jhdhd")
+          document.getElementById("addtaskinput").value = "";
+          document.getElementById("addlname").value = "";
+          document.getElementById("addcountrycode").value = "";
+          document.getElementById("addnumber").value = "";
 
-       document.getElementById("addtaskinput").value = '';
-         document.getElementById("addlname").value = '';
-         document.getElementById("addcountrycode").value = '';
-        document.getElementById("addnumber").value = '';
-
-        showtask();
+          showtask();
         }
       };
       function showtask() {
@@ -160,46 +152,60 @@
         } else {
           taskobj = JSON.parse(webtask);
         }
+
+        editdeleteupdate(taskobj);
+      }
+
+      function editupdate(edittask) {
+        alert("lsjc");
+        document.getElementById("modal").style.display = "block";
+        document.getElementById("opendatatable").style.opacity = "0.5";
+        const abc = taskobj.find((data) => data.id == edittask);
+        console.log(abc, "jkd");
+        let addtaskinput = (document.getElementById("addtaskinput").value =
+          abc.fname);
+        let addlname = (document.getElementById("addlname").value = abc.lname);
+        let addcountrycode = (document.getElementById("addcountrycode").value =
+          abc.countrycode);
+        let addnumber = (document.getElementById("addnumber").value =
+          abc.mobilenumber);
+        // editdeleteupdate(taskobj);
+      }
+
+      function editdeleteupdate() {
         let html = "";
         let addtasklist = document.getElementById("addtasklist");
         html += " <tbody class='data-style' id='addtasklist'>";
-          let i;
-        for ( i = 0; i < taskobj.length; i++) {
+        let i;
+        for (i = 0; i < taskobj.length; i++) {
           html += `<tr>
-            <td class='content'> ${ taskobj[i].fname } ${ taskobj[i].lname }</td>
-            <td class='content'> ${taskobj[i].countrycode }</td>
-            <td class='content'> ${taskobj[i].mobilenumber }</td>
-            <button id="edittask" onclick="editupdate()"><img src='./icons/edit.png' /></button>
-            <button id='deletetask' onclick='deleteupdatetask(${i})'><img class='delete' src='./icons/delete.png' /></button>
+            <td class='content'> ${taskobj[i].fname} ${taskobj[i].lname}</td>
+            <td class='content'> ${taskobj[i].countrycode}</td>
+            <td class='content'> ${taskobj[i].mobilenumber}</td>
+            <button id="edittask" onclick="editupdate(${taskobj[i].id})"><img src='./icons/edit.png' /></button>
+            <button id='deletetask' onclick='deleteupdatetask(${taskobj[i].id})'><img class='delete' src='./icons/delete.png' /></button>
             </tr>
-            `;          
+            `;
         }
         html += "</tbody>";
 
         addtasklist.innerHTML = html;
-      
-      }
-      
-     function editupdate () {
-        alert("lsjc")
-        document.getElementById("modal").style.display = "block";
-        document.getElementById("opendatatable").style.opacity = "0.5";
       }
 
-      function deleteupdatetask (deletetask) {
+      function deleteupdatetask(deletetask) {
         // var n = onclick.indexOf(taskobj);
         // alert('delete')
-        console.log(deletetask,"aaa")
-        const abc = taskobj.slice(!deletetask);
+        console.log(deletetask, "aaa");
+        const abc = taskobj.filter((data) => data.id !== deletetask);
         // console.log(abc, "jdhnk")
 
         taskobj = abc;
-        console.log(taskobj, "6532")
+        console.log(taskobj, "6532");
         localStorage.setItem("localtask", JSON.stringify(taskobj));
-        console.log(abc, 'ywghjr')
+        console.log(abc, "ywghjr");
         // document.getElementById('modal').style.display = 'block'
+        editdeleteupdate(taskobj);
       }
-    
     </script>
   </body>
 </html>
