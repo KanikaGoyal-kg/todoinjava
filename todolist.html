@@ -75,8 +75,7 @@
 
             <input
               type="number"
-              step="10"
-              min="0"
+              min="10"
               max="10"
               required
               class="input-number"
@@ -86,6 +85,8 @@
           </div>
         </div>
         <button class="button" id="addtaskbtn">Submit</button>
+        <button class="button" id="savetask" style="display: none;">Save</button>
+      
       </div>
     </div>
     <script>
@@ -104,12 +105,10 @@
         let addlname = document.getElementById("addlname").value;
         let addcountrycode = document.getElementById("addcountrycode").value;
         let addnumber = document.getElementById("addnumber").value;
-        // localStorage.setItem('fname', addtaskinput)
         datakeys.fname = addtaskinput;
         datakeys.lname = addlname;
         datakeys.countrycode = addcountrycode;
         datakeys.mobilenumber = addnumber;
-        // var numbers = /^[0-9]+$/;
         if (addtaskinput == "") {
           document.getElementById("modal").style.display = "block";
           alert("Please enter your first name");
@@ -132,10 +131,8 @@
             taskobj = JSON.parse(webtask);
             datakeys.id = webtask.length + 1;
           }
-          // if (datakeys.id)
           taskobj.push(datakeys);
           localStorage.setItem("localtask", JSON.stringify(taskobj));
-          // alert("jhdhd")
 
           document.getElementById("addtaskinput").value = "";
           document.getElementById("addlname").value = "";
@@ -160,6 +157,10 @@
         alert("lsjc");
         document.getElementById("modal").style.display = "block";
         document.getElementById("opendatatable").style.opacity = "0.5";
+        let addtaskbtn = document.getElementById("addtaskbtn").style.display = 'none';
+        console.log(edittask,"f")
+        let savetask = document.getElementById("savetask").style.display = 'block';
+
         const abc = taskobj.find((data) => data.id == edittask);
         console.log(abc, "jkd");
         let addtaskinput = (document.getElementById("addtaskinput").value =
@@ -169,7 +170,68 @@
           abc.countrycode);
         let addnumber = (document.getElementById("addnumber").value =
           abc.mobilenumber);
-        // editdeleteupdate(taskobj);
+          localStorage.setItem("editid", edittask)
+        editdeleteupdate(taskobj);
+      }
+      document.getElementById("savetask").onclick = function () {
+        document.getElementById("opendatatable").style.display = "block";
+        document.getElementById("modal").style.display = "none";
+        let datakeys = {
+          fname: "",
+          lname: "",
+          countrycode: "",
+          mobilenumber: "",
+          id: "",
+        };
+
+        let addtaskinput = document.getElementById("addtaskinput").value;
+        let addlname = document.getElementById("addlname").value;
+        let addcountrycode = document.getElementById("addcountrycode").value;
+        let addnumber = document.getElementById("addnumber").value;
+        datakeys.fname = addtaskinput;
+        datakeys.lname = addlname;
+        datakeys.countrycode = addcountrycode;
+        datakeys.mobilenumber = addnumber;
+        if (addtaskinput == "") {
+          document.getElementById("modal").style.display = "block";
+          alert("Please enter your first name");
+        } else if (addlname == "") {
+          document.getElementById("modal").style.display = "block";
+          alert("Please enter your last name");
+        } else if (addcountrycode == "") {
+          document.getElementById("modal").style.display = "block";
+          alert("Please enter country code");
+        } else if (addnumber == "") {
+          document.getElementById("modal").style.display = "block";
+          alert("Please enter mobile number ");
+        } else {
+          alert("done");
+          let taskobj = [];
+          let webtask = localStorage.getItem("localtask");
+          if (!webtask) {
+            taskobj = [];
+          } else {
+            taskobj = JSON.parse(webtask);
+            console.log(taskobj, "task")
+            console.log(datakeys,"data")
+           const editdetails = localStorage.getItem("editid")
+            datakeys.id = parseInt(editdetails);
+            console.log(datakeys.id, "aaaaaaaaa")
+             taskobj.filter((data) => data.id === datakeys.id).map((item) => {
+              item.fname = addtaskinput;
+              item.lname = addlname;
+              item.countrycode = addcountrycode;
+              item.mobilenumber = addnumber;
+              return item;
+            })
+            
+            console.log(datakeys, "datakeys")
+            taskobj.push(datakeys);
+          localStorage.setItem("localtask", JSON.stringify(taskobj));
+          }
+        }
+        editdeleteupdate(taskobj);
+
       }
 
       function editdeleteupdate() {
@@ -183,6 +245,7 @@
             <td class='content'> ${taskobj[i].countrycode}</td>
             <td class='content'> ${taskobj[i].mobilenumber}</td>
             <button id="edittask" onclick="editupdate(${taskobj[i].id})"><img src='./icons/edit.png' /></button>
+            
             <button id='deletetask' onclick='deleteupdatetask(${taskobj[i].id})'><img class='delete' src='./icons/delete.png' /></button>
             </tr>
             `;
@@ -193,17 +256,13 @@
       }
 
       function deleteupdatetask(deletetask) {
-        // var n = onclick.indexOf(taskobj);
-        // alert('delete')
         console.log(deletetask, "aaa");
         const abc = taskobj.filter((data) => data.id !== deletetask);
         // console.log(abc, "jdhnk")
-
         taskobj = abc;
         console.log(taskobj, "6532");
         localStorage.setItem("localtask", JSON.stringify(taskobj));
         console.log(abc, "ywghjr");
-        // document.getElementById('modal').style.display = 'block'
         editdeleteupdate(taskobj);
       }
     </script>
