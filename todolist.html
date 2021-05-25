@@ -6,13 +6,13 @@
       function editdeleteupdate(taskobj) {
         let html = "";
         let addtasklist = document.getElementById("addtasklist");
-        html += " <tbody class='data-style' id='addtasklist'>";
+        html += " <tbody id='addtasklist'>";
         let i;
         for (i = 0; i < taskobj.length; i++) {
           html += `<tr>
-            <td class='content'> ${taskobj[i].fname} ${taskobj[i].lname}</td>
-            <td class='content'> ${taskobj[i].countrycode}</td>
-            <td class='content'> ${taskobj[i].mobilenumber}</td>
+            <td> ${taskobj[i].fname} ${taskobj[i].lname}</td>
+            <td> ${taskobj[i].countrycode}</td>
+            <td> ${taskobj[i].mobilenumber}</td>
             <button id="edittask" onclick="editupdate(${taskobj[i].id})"><img src='./icons/edit.png' /></button>
             
             <button id='deletetask' onclick='deleteupdatetask(${taskobj[i].id})'><img class='delete' src='./icons/delete.png' /></button>
@@ -32,14 +32,14 @@
           <caption class="caption-style">
             Contact details
           </caption>
-          <thead class="data-style">
-            <tr>
-              <th class="content">Name</th>
-              <th class="content">Country code</th>
-              <th class="content">Mobile number</th>
+          <thead>
+            <tr style="border-bottom: 1px solid black;">
+              <th>Name</th>
+              <th>Country code</th>
+              <th>Mobile number</th>
             </tr>
           </thead>
-          <tbody class="data-style" id="addtasklist">
+          <tbody id="addtasklist">
             <script>
               let webtask = localStorage.getItem("localtask");
               if (webtask == null) {
@@ -155,7 +155,7 @@
           document.getElementById("modal").style.display = "block";
           alert("Please enter mobile number ");
         } else {
-          alert("done");
+          alert("Your form is edited");
           let taskobj = [];
           let webtask = localStorage.getItem("localtask");
           if (!webtask) {
@@ -187,7 +187,7 @@
       }
 
       function editupdate(edittask) {
-        alert("lsjc");
+        alert("You can edit the details");
         document.getElementById("modal").style.display = "block";
         document.getElementById("opendatatable").style.opacity = "0.5";
         let addtaskbtn = (document.getElementById("addtaskbtn").style.display =
@@ -195,14 +195,14 @@
         let savetask = (document.getElementById("savetask").style.display =
           "block");
 
-        const abc = taskobj.find((data) => data.id == edittask);
+        const changevalue = taskobj.find((data) => data.id == edittask);
         let addtaskinput = (document.getElementById("addtaskinput").value =
-          abc.fname);
-        let addlname = (document.getElementById("addlname").value = abc.lname);
+          changevalue.fname);
+        let addlname = (document.getElementById("addlname").value = changevalue.lname);
         let addcountrycode = (document.getElementById("addcountrycode").value =
-          abc.countrycode);
+          changevalue.countrycode);
         let addnumber = (document.getElementById("addnumber").value =
-          abc.mobilenumber);
+          changevalue.mobilenumber);
         localStorage.setItem("editid", edittask);
       }
       document.getElementById("savetask").onclick = function () {
@@ -237,7 +237,7 @@
           document.getElementById("modal").style.display = "block";
           alert("Please enter mobile number ");
         } else {
-          alert("done");
+          alert("Your form is completed");
           let taskobj = [];
           let webtask = localStorage.getItem("localtask");
           if (!webtask) {
@@ -266,8 +266,8 @@
       };
 
       function deleteupdatetask(deletetask) {
-        const abc = taskobj.filter((data) => data.id !== deletetask);
-        taskobj = abc;
+        const changevalue = taskobj.filter((data) => data.id !== deletetask);
+        taskobj = changevalue;
         localStorage.setItem("localtask", JSON.stringify(taskobj));
         editdeleteupdate(taskobj);
       }
