@@ -13,9 +13,12 @@
             <td> ${taskobj[i].fname} ${taskobj[i].lname}</td>
             <td> ${taskobj[i].countrycode}</td>
             <td> ${taskobj[i].mobilenumber}</td>
+            <td>
             <button id="edittask" onclick="editupdate(${taskobj[i].id})"><img src='./icons/edit.png' /></button>
-            
             <button id='deletetask' onclick='deleteupdatetask(${taskobj[i].id})'><img class='delete' src='./icons/delete.png' /></button>
+
+            </td>
+           
             </tr>
             `;
         }
@@ -33,10 +36,12 @@
             Contact details
           </caption>
           <thead>
-            <tr style="border-bottom: 1px solid black;">
+            <tr>
               <th>Name</th>
               <th>Country code</th>
               <th>Mobile number</th>
+              <th>Action</th>
+
             </tr>
           </thead>
           <tbody id="addtasklist">

@@ -1,5 +1,5 @@
 .data-div {
-    background-color: antiquewhite;
+    background-color: #F8FBFC;
     position: fixed;
     width: 100%;
     top: 0%;
@@ -10,13 +10,18 @@
     width: 50%;
     margin-left: 180px;
     text-align: left;
+    background-color: #F8FBFC;
+    border-left: 1px solid #F8FBFC;
+    box-shadow: -1px 0px darkgrey;
 }
 .table-div td, .table-div th {
-    border: 1px solid black;
-    padding: 8px;
+    padding: 15px;
 }
 .button-div {
     margin-right: 180px;
+}
+#addtasklist {
+    background-color: white;
 }
 .div-style {
     height: 100vh;
@@ -58,8 +63,9 @@
     text-shadow: 0 2px 2px black;
 }
 #edittask,#deletetask {
-    background-color: antiquewhite;
-    border: none;   
+    background-color: white;
+    border: none; 
+    /* margin-left: -100px;   */
 }
 .caption-style {
     margin-right: 76%;
