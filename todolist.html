@@ -16,14 +16,11 @@
             <td>
             <button id="edittask" onclick="editupdate(${contactdetails[i].id})"><img src='./icons/edit.png' /></button>
             <button id='deletetask' onclick='deleteupdatetask(${contactdetails[i].id})'><img class='delete' src='./icons/delete.png' /></button>
-
             </td>
-           
             </tr>
             `;
         }
         html += "</tbody>";
-
         addtasklist.innerHTML = html;
       }
     </script>
@@ -51,9 +48,7 @@
               } else {
                 contactdetails = JSON.parse(contactinfo);
               }
-
               let i;
-
               editdeleteupdate(contactdetails);
             </script>
           </tbody>
@@ -79,7 +74,6 @@
           document.getElementById("opendatatable").style.opacity = "1";
         }
       </script>
-
       <div class="div">
         <h1 class="header">Enter details</h1>
         <div class="input-main-div">
@@ -93,7 +87,6 @@
           </div>
           <div>
             <label class="label">Last Name</label>
-
             <input
               class="input-div"
               placeholder="Enter yout last name"
@@ -101,7 +94,6 @@
             />
           </div>
           <label class="label">Mobile number</label>
-
           <div class="input-one-row">
             <input
               type="number"
@@ -110,7 +102,6 @@
               placeholder="+"
               id="addcountrycode"
             />
-
             <input
               type="number"
               required
@@ -135,7 +126,6 @@
           mobilenumber: "",
           id: "",
         };
-
         let addtaskinput = document.getElementById("addtaskinput").value;
         let addlname = document.getElementById("addlname").value;
         let addcountrycode = document.getElementById("addcountrycode").value;
@@ -184,10 +174,8 @@
         } else {
           contactdetails = JSON.parse(contactinfo);
         }
-
         editdeleteupdate(contactdetails);
       }
-
       function editupdate(edittask) {
         alert("You can edit the details");
         document.getElementById("modal").style.display = "block";
