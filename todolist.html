@@ -45,11 +45,11 @@
           </thead>
           <tbody id="addtasklist">
             <script>
-              let webtask = localStorage.getItem("localtask");
-              if (webtask == null) {
+              let contactinfo = localStorage.getItem("localtask");
+              if (contactinfo == null) {
                 contactdetails = [];
               } else {
-                contactdetails = JSON.parse(webtask);
+                contactdetails = JSON.parse(contactinfo);
               }
 
               let i;
@@ -159,11 +159,11 @@
         } else {
           alert("Your form is edited");
           let contactdetails = [];
-          let webtask = localStorage.getItem("localtask");
-          if (!webtask) {
+          let contactinfo = localStorage.getItem("localtask");
+          if (!contactinfo) {
             contactdetails = [];
           } else {
-            contactdetails = JSON.parse(webtask);
+            contactdetails = JSON.parse(contactinfo);
             datakeys.id = Math.random();
           }
           contactdetails.push(datakeys);
@@ -178,11 +178,11 @@
         }
       };
       function showtask() {
-        let webtask = localStorage.getItem("localtask");
-        if (webtask == null) {
+        let contactinfo = localStorage.getItem("localtask");
+        if (contactinfo == null) {
           contactdetails = [];
         } else {
-          contactdetails = JSON.parse(webtask);
+          contactdetails = JSON.parse(contactinfo);
         }
 
         editdeleteupdate(contactdetails);
@@ -241,11 +241,11 @@
           } else {
             alert("Your form is completed");
             let contactdetails = [];
-            let webtask = localStorage.getItem("localtask");
-            if (!webtask) {
+            let contactinfo = localStorage.getItem("localtask");
+            if (!contactinfo) {
               contactdetails = [];
             } else {
-              contactdetails = JSON.parse(webtask);
+              contactdetails = JSON.parse(contactinfo);
 
               const editdetails = localStorage.getItem("editid");
               datakeys.id = parseInt(editdetails);
