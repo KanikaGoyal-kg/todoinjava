@@ -82,7 +82,7 @@
             <input
               class="input-div"
               placeholder="Enter your first name"
-              id="addtaskinput"
+              id="enterfname"
             />
           </div>
           <div>
@@ -90,7 +90,7 @@
             <input
               class="input-div"
               placeholder="Enter yout last name"
-              id="addlname"
+              id="enterlname"
             />
           </div>
           <label class="label">Mobile number</label>
@@ -100,23 +100,23 @@
               class="input-row"
               required
               placeholder="+"
-              id="addcountrycode"
+              id="entercountrycode"
             />
             <input
               type="number"
               required
               class="input-number"
               placeholder="Enter mobile number"
-              id="addnumber"
+              id="enternumber"
             />
           </div>
         </div>
-        <button class="button" id="addtaskbtn">Submit</button>
+        <button class="button" id="clicksubmit">Submit</button>
         <button class="button" id="savetask" style="display: none">Save</button>
       </div>
     </div>
     <script>
-      document.getElementById("addtaskbtn").onclick = function () {
+      document.getElementById("clicksubmit").onclick = function () {
         document.getElementById("opendatatable").style.display = "block";
         document.getElementById("modal").style.display = "none";
         let datakeys = {
@@ -126,24 +126,24 @@
           mobilenumber: "",
           id: "",
         };
-        let addtaskinput = document.getElementById("addtaskinput").value;
-        let addlname = document.getElementById("addlname").value;
-        let addcountrycode = document.getElementById("addcountrycode").value;
-        let addnumber = document.getElementById("addnumber").value;
-        datakeys.fname = addtaskinput;
-        datakeys.lname = addlname;
-        datakeys.countrycode = addcountrycode;
-        datakeys.mobilenumber = addnumber;
-        if (addtaskinput == "") {
+        let enterfname = document.getElementById("enterfname").value;
+        let enterlname = document.getElementById("enterlname").value;
+        let entercountrycode = document.getElementById("entercountrycode").value;
+        let enternumber = document.getElementById("enternumber").value;
+        datakeys.fname = enterfname;
+        datakeys.lname = enterlname;
+        datakeys.countrycode = entercountrycode;
+        datakeys.mobilenumber = enternumber;
+        if (enterfname == "") {
           document.getElementById("modal").style.display = "block";
           alert("Please enter your first name");
-        } else if (addlname == "") {
+        } else if (enterlname == "") {
           document.getElementById("modal").style.display = "block";
           alert("Please enter your last name");
-        } else if (addcountrycode == "") {
+        } else if (entercountrycode == "") {
           document.getElementById("modal").style.display = "block";
           alert("Please enter country code");
-        } else if (addnumber == "") {
+        } else if (enternumber == "") {
           document.getElementById("modal").style.display = "block";
           alert("Please enter mobile number ");
         } else {
@@ -159,10 +159,10 @@
           contactdetails.push(datakeys);
           localStorage.setItem("localtask", JSON.stringify(contactdetails));
 
-          document.getElementById("addtaskinput").value = "";
-          document.getElementById("addlname").value = "";
-          document.getElementById("addcountrycode").value = "";
-          document.getElementById("addnumber").value = "";
+          document.getElementById("enterfname").value = "";
+          document.getElementById("enterlname").value = "";
+          document.getElementById("entercountrycode").value = "";
+          document.getElementById("enternumber").value = "";
 
           showtask();
         }
@@ -180,19 +180,19 @@
         alert("You can edit the details");
         document.getElementById("modal").style.display = "block";
         document.getElementById("opendatatable").style.opacity = "0.5";
-        let addtaskbtn = (document.getElementById("addtaskbtn").style.display =
+        let clicksubmit = (document.getElementById("clicksubmit").style.display =
           "none");
         let savetask = (document.getElementById("savetask").style.display =
           "block");
 
         const changevalue = contactdetails.find((data) => data.id == edittask);
-        let addtaskinput = (document.getElementById("addtaskinput").value =
+        let enterfname = (document.getElementById("enterfname").value =
           changevalue.fname);
-        let addlname = (document.getElementById("addlname").value =
+        let enterlname = (document.getElementById("enterlname").value =
           changevalue.lname);
-        let addcountrycode = (document.getElementById("addcountrycode").value =
+        let entercountrycode = (document.getElementById("entercountrycode").value =
           changevalue.countrycode);
-        let addnumber = (document.getElementById("addnumber").value =
+        let enternumber = (document.getElementById("enternumber").value =
           changevalue.mobilenumber);
         localStorage.setItem("editid", edittask);
         document.getElementById("savetask").onclick = function () {
@@ -206,24 +206,24 @@
             id: "",
           };
 
-          let addtaskinput = document.getElementById("addtaskinput").value;
-          let addlname = document.getElementById("addlname").value;
-          let addcountrycode = document.getElementById("addcountrycode").value;
-          let addnumber = document.getElementById("addnumber").value;
-          datakeys.fname = addtaskinput;
-          datakeys.lname = addlname;
-          datakeys.countrycode = addcountrycode;
-          datakeys.mobilenumber = addnumber;
-          if (addtaskinput == "") {
+          let enterfname = document.getElementById("enterfname").value;
+          let enterlname = document.getElementById("enterlname").value;
+          let entercountrycode = document.getElementById("entercountrycode").value;
+          let enternumber = document.getElementById("enternumber").value;
+          datakeys.fname = enterfname;
+          datakeys.lname = enterlname;
+          datakeys.countrycode = entercountrycode;
+          datakeys.mobilenumber = enternumber;
+          if (enterfname == "") {
             document.getElementById("modal").style.display = "block";
             alert("Please enter your first name");
-          } else if (addlname == "") {
+          } else if (enterlname == "") {
             document.getElementById("modal").style.display = "block";
             alert("Please enter your last name");
-          } else if (addcountrycode == "") {
+          } else if (entercountrycode == "") {
             document.getElementById("modal").style.display = "block";
             alert("Please enter country code");
-          } else if (addnumber == "") {
+          } else if (enternumber == "") {
             document.getElementById("modal").style.display = "block";
             alert("Please enter mobile number ");
           } else {
@@ -241,10 +241,10 @@
               const editvalue = contactdetails.findIndex(
                 (data) => data.id === edittask
               );
-              contactdetails[editvalue].fname = addtaskinput;
-              contactdetails[editvalue].lname = addlname;
-              contactdetails[editvalue].countrycode = addcountrycode;
-              contactdetails[editvalue].mobilenumber = addnumber;
+              contactdetails[editvalue].fname = enterfname;
+              contactdetails[editvalue].lname = enterlname;
+              contactdetails[editvalue].countrycode = entercountrycode;
+              contactdetails[editvalue].mobilenumber = enternumber;
               localStorage.setItem("localtask", JSON.stringify(contactdetails));
               document.getElementById("opendatatable").style.opacity = 1;
             }
