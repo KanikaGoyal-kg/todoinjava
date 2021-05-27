@@ -10,7 +10,7 @@
         let i;
         for (i = 0; i < contactDetails.length; i++) {
           html += `<tr>
-            <td> ${contactDetails[i].fname} ${contactDetails[i].lname}</td>
+            <td> ${contactDetails[i].fName} ${contactDetails[i].lName}</td>
             <td> ${contactDetails[i].countrycode}</td>
             <td> ${contactDetails[i].mobilenumber}</td>
             <td>
@@ -120,8 +120,8 @@
         document.getElementById("opendatatable").style.display = "block";
         document.getElementById("modal").style.display = "none";
         let datakeys = {
-          fname: "",
-          lname: "",
+          fName: "",
+          lName: "",
           countrycode: "",
           mobilenumber: "",
           id: "",
@@ -130,8 +130,8 @@
         let enterLastName = document.getElementById("enterLastName").value;
         let enterCountryCode = document.getElementById("enterCountryCode").value;
         let enterNumber = document.getElementById("enterNumber").value;
-        datakeys.fname = enterFirstName;
-        datakeys.lname = enterLastName;
+        datakeys.fName = enterFirstName;
+        datakeys.lName = enterLastName;
         datakeys.countrycode = enterCountryCode;
         datakeys.mobilenumber = enterNumber;
         if (enterFirstName == "") {
@@ -187,9 +187,9 @@
 
         const changeValue = contactDetails.find((data) => data.id == edittask);
         let enterFirstName = (document.getElementById("enterFirstName").value =
-          changeValue.fname);
+          changeValue.fName);
         let enterLastName = (document.getElementById("enterLastName").value =
-          changeValue.lname);
+          changeValue.lName);
         let enterCountryCode = (document.getElementById("enterCountryCode").value =
           changeValue.countrycode);
         let enterNumber = (document.getElementById("enterNumber").value =
@@ -199,8 +199,8 @@
           document.getElementById("opendatatable").style.display = "block";
           document.getElementById("modal").style.display = "none";
           let datakeys = {
-            fname: "",
-            lname: "",
+            fName: "",
+            lName: "",
             countrycode: "",
             mobilenumber: "",
             id: "",
@@ -210,8 +210,8 @@
           let enterLastName = document.getElementById("enterLastName").value;
           let enterCountryCode = document.getElementById("enterCountryCode").value;
           let enterNumber = document.getElementById("enterNumber").value;
-          datakeys.fname = enterFirstName;
-          datakeys.lname = enterLastName;
+          datakeys.fName = enterFirstName;
+          datakeys.lName = enterLastName;
           datakeys.countrycode = enterCountryCode;
           datakeys.mobilenumber = enterNumber;
           if (enterFirstName == "") {
@@ -241,8 +241,8 @@
               const editvalue = contactDetails.findIndex(
                 (data) => data.id === edittask
               );
-              contactDetails[editvalue].fname = enterFirstName;
-              contactDetails[editvalue].lname = enterLastName;
+              contactDetails[editvalue].fName = enterFirstName;
+              contactDetails[editvalue].lName = enterLastName;
               contactDetails[editvalue].countrycode = enterCountryCode;
               contactDetails[editvalue].mobilenumber = enterNumber;
               localStorage.setItem("localtask", JSON.stringify(contactDetails));
