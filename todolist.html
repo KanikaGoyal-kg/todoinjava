@@ -3,25 +3,25 @@
     <link rel="stylesheet" href="css/todolist.css" />
     <script src="js/main.js"></script>
     <script>
-      function editdeleteupdate(contactdetails) {
+      function editdeleteupdate(contactDetails) {
         let html = "";
-        let addtasklist = document.getElementById("addtasklist");
-        html += " <tbody id='addtasklist'>";
+        let addContactList = document.getElementById("addContactList");
+        html += " <tbody id='addContactList'>";
         let i;
-        for (i = 0; i < contactdetails.length; i++) {
+        for (i = 0; i < contactDetails.length; i++) {
           html += `<tr>
-            <td> ${contactdetails[i].fname} ${contactdetails[i].lname}</td>
-            <td> ${contactdetails[i].countrycode}</td>
-            <td> ${contactdetails[i].mobilenumber}</td>
+            <td> ${contactDetails[i].fname} ${contactDetails[i].lname}</td>
+            <td> ${contactDetails[i].countrycode}</td>
+            <td> ${contactDetails[i].mobilenumber}</td>
             <td>
-            <button id="edittask" onclick="editupdate(${contactdetails[i].id})"><img src='./icons/edit.png' /></button>
-            <button id='deletetask' onclick='deleteupdatetask(${contactdetails[i].id})'><img class='delete' src='./icons/delete.png' /></button>
+            <button id="edittask" onclick="editupdate(${contactDetails[i].id})"><img src='./icons/edit.png' /></button>
+            <button id='deletetask' onclick='deleteupdatetask(${contactDetails[i].id})'><img class='delete' src='./icons/delete.png' /></button>
             </td>
             </tr>
             `;
         }
         html += "</tbody>";
-        addtasklist.innerHTML = html;
+        addContactList.innerHTML = html;
       }
     </script>
   </head>
@@ -40,16 +40,16 @@
               <th>Action</th>
             </tr>
           </thead>
-          <tbody id="addtasklist">
+          <tbody id="addContactList">
             <script>
               let contactinfo = localStorage.getItem("localtask");
               if (contactinfo == null) {
-                contactdetails = [];
+                contactDetails = [];
               } else {
-                contactdetails = JSON.parse(contactinfo);
+                contactDetails = JSON.parse(contactinfo);
               }
               let i;
-              editdeleteupdate(contactdetails);
+              editdeleteupdate(contactDetails);
             </script>
           </tbody>
         </table>
@@ -65,10 +65,10 @@
     </div>
     <div class="main-div" id="modal">
       <div class="removeicon">
-        <img src="./icons/remove.png" onclick="removemodal()" />
+        <img src="./icons/remove.png" onclick="removeModal()" />
       </div>
       <script>
-        function removemodal() {
+        function removeModal() {
           document.getElementById("modal").style.display = "none";
           document.getElementById("opendatatable").style.display = "block";
           document.getElementById("opendatatable").style.opacity = "1";
@@ -82,7 +82,7 @@
             <input
               class="input-div"
               placeholder="Enter your first name"
-              id="enterfname"
+              id="enterFirstName"
             />
           </div>
           <div>
@@ -90,7 +90,7 @@
             <input
               class="input-div"
               placeholder="Enter yout last name"
-              id="enterlname"
+              id="enterLastName"
             />
           </div>
           <label class="label">Mobile number</label>
@@ -100,14 +100,14 @@
               class="input-row"
               required
               placeholder="+"
-              id="entercountrycode"
+              id="enterCountryCode"
             />
             <input
               type="number"
               required
               class="input-number"
               placeholder="Enter mobile number"
-              id="enternumber"
+              id="enterNumber"
             />
           </div>
         </div>
@@ -126,43 +126,43 @@
           mobilenumber: "",
           id: "",
         };
-        let enterfname = document.getElementById("enterfname").value;
-        let enterlname = document.getElementById("enterlname").value;
-        let entercountrycode = document.getElementById("entercountrycode").value;
-        let enternumber = document.getElementById("enternumber").value;
-        datakeys.fname = enterfname;
-        datakeys.lname = enterlname;
-        datakeys.countrycode = entercountrycode;
-        datakeys.mobilenumber = enternumber;
-        if (enterfname == "") {
+        let enterFirstName = document.getElementById("enterFirstName").value;
+        let enterLastName = document.getElementById("enterLastName").value;
+        let enterCountryCode = document.getElementById("enterCountryCode").value;
+        let enterNumber = document.getElementById("enterNumber").value;
+        datakeys.fname = enterFirstName;
+        datakeys.lname = enterLastName;
+        datakeys.countrycode = enterCountryCode;
+        datakeys.mobilenumber = enterNumber;
+        if (enterFirstName == "") {
           document.getElementById("modal").style.display = "block";
           alert("Please enter your first name");
-        } else if (enterlname == "") {
+        } else if (enterLastName == "") {
           document.getElementById("modal").style.display = "block";
           alert("Please enter your last name");
-        } else if (entercountrycode == "") {
+        } else if (enterCountryCode == "") {
           document.getElementById("modal").style.display = "block";
           alert("Please enter country code");
-        } else if (enternumber == "") {
+        } else if (enterNumber == "") {
           document.getElementById("modal").style.display = "block";
           alert("Please enter mobile number ");
         } else {
           alert("Your form is submitted");
-          let contactdetails = [];
+          let contactDetails = [];
           let contactinfo = localStorage.getItem("localtask");
           if (!contactinfo) {
-            contactdetails = [];
+            contactDetails = [];
           } else {
-            contactdetails = JSON.parse(contactinfo);
+            contactDetails = JSON.parse(contactinfo);
             datakeys.id = Math.random();
           }
-          contactdetails.push(datakeys);
-          localStorage.setItem("localtask", JSON.stringify(contactdetails));
+          contactDetails.push(datakeys);
+          localStorage.setItem("localtask", JSON.stringify(contactDetails));
 
-          document.getElementById("enterfname").value = "";
-          document.getElementById("enterlname").value = "";
-          document.getElementById("entercountrycode").value = "";
-          document.getElementById("enternumber").value = "";
+          document.getElementById("enterFirstName").value = "";
+          document.getElementById("enterLastName").value = "";
+          document.getElementById("enterCountryCode").value = "";
+          document.getElementById("enterNumber").value = "";
 
           showtask();
         }
@@ -170,11 +170,11 @@
       function showtask() {
         let contactinfo = localStorage.getItem("localtask");
         if (contactinfo == null) {
-          contactdetails = [];
+          contactDetails = [];
         } else {
-          contactdetails = JSON.parse(contactinfo);
+          contactDetails = JSON.parse(contactinfo);
         }
-        editdeleteupdate(contactdetails);
+        editdeleteupdate(contactDetails);
       }
       function editupdate(edittask) {
         alert("You can edit the details");
@@ -185,15 +185,15 @@
         let savetask = (document.getElementById("savetask").style.display =
           "block");
 
-        const changevalue = contactdetails.find((data) => data.id == edittask);
-        let enterfname = (document.getElementById("enterfname").value =
-          changevalue.fname);
-        let enterlname = (document.getElementById("enterlname").value =
-          changevalue.lname);
-        let entercountrycode = (document.getElementById("entercountrycode").value =
-          changevalue.countrycode);
-        let enternumber = (document.getElementById("enternumber").value =
-          changevalue.mobilenumber);
+        const changeValue = contactDetails.find((data) => data.id == edittask);
+        let enterFirstName = (document.getElementById("enterFirstName").value =
+          changeValue.fname);
+        let enterLastName = (document.getElementById("enterLastName").value =
+          changeValue.lname);
+        let enterCountryCode = (document.getElementById("enterCountryCode").value =
+          changeValue.countrycode);
+        let enterNumber = (document.getElementById("enterNumber").value =
+          changeValue.mobilenumber);
         localStorage.setItem("editid", edittask);
         document.getElementById("savetask").onclick = function () {
           document.getElementById("opendatatable").style.display = "block";
@@ -206,46 +206,46 @@
             id: "",
           };
 
-          let enterfname = document.getElementById("enterfname").value;
-          let enterlname = document.getElementById("enterlname").value;
-          let entercountrycode = document.getElementById("entercountrycode").value;
-          let enternumber = document.getElementById("enternumber").value;
-          datakeys.fname = enterfname;
-          datakeys.lname = enterlname;
-          datakeys.countrycode = entercountrycode;
-          datakeys.mobilenumber = enternumber;
-          if (enterfname == "") {
+          let enterFirstName = document.getElementById("enterFirstName").value;
+          let enterLastName = document.getElementById("enterLastName").value;
+          let enterCountryCode = document.getElementById("enterCountryCode").value;
+          let enterNumber = document.getElementById("enterNumber").value;
+          datakeys.fname = enterFirstName;
+          datakeys.lname = enterLastName;
+          datakeys.countrycode = enterCountryCode;
+          datakeys.mobilenumber = enterNumber;
+          if (enterFirstName == "") {
             document.getElementById("modal").style.display = "block";
             alert("Please enter your first name");
-          } else if (enterlname == "") {
+          } else if (enterLastName == "") {
             document.getElementById("modal").style.display = "block";
             alert("Please enter your last name");
-          } else if (entercountrycode == "") {
+          } else if (enterCountryCode == "") {
             document.getElementById("modal").style.display = "block";
             alert("Please enter country code");
-          } else if (enternumber == "") {
+          } else if (enterNumber == "") {
             document.getElementById("modal").style.display = "block";
             alert("Please enter mobile number ");
           } else {
             alert("Your form is completed");
-            let contactdetails = [];
+            let contactDetails = [];
             let contactinfo = localStorage.getItem("localtask");
             if (!contactinfo) {
-              contactdetails = [];
+              contactDetails = [];
             } else {
-              contactdetails = JSON.parse(contactinfo);
+              contactDetails = JSON.parse(contactinfo);
 
               const editdetails = localStorage.getItem("editid");
               datakeys.id = parseInt(editdetails);
 
-              const editvalue = contactdetails.findIndex(
+              const editvalue = contactDetails.findIndex(
                 (data) => data.id === edittask
               );
-              contactdetails[editvalue].fname = enterfname;
-              contactdetails[editvalue].lname = enterlname;
-              contactdetails[editvalue].countrycode = entercountrycode;
-              contactdetails[editvalue].mobilenumber = enternumber;
-              localStorage.setItem("localtask", JSON.stringify(contactdetails));
+              contactDetails[editvalue].fname = enterFirstName;
+              contactDetails[editvalue].lname = enterLastName;
+              contactDetails[editvalue].countrycode = enterCountryCode;
+              contactDetails[editvalue].mobilenumber = enterNumber;
+              localStorage.setItem("localtask", JSON.stringify(contactDetails));
               document.getElementById("opendatatable").style.opacity = 1;
             }
           }
@@ -253,12 +253,12 @@
         };
       }
       function deleteupdatetask(deletetask) {
-        const changevalue = contactdetails.findIndex(
+        const changeValue = contactDetails.findIndex(
           (data) => data.id === deletetask
         );
-        contactdetails.splice(changevalue, 1);
-        localStorage.setItem("localtask", JSON.stringify(contactdetails));
-        editdeleteupdate(contactdetails);
+        contactDetails.splice(changeValue, 1);
+        localStorage.setItem("localtask", JSON.stringify(contactDetails));
+        editdeleteupdate(contactDetails);
       }
     </script>
   </body>
