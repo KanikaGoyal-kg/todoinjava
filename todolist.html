@@ -42,11 +42,11 @@
           </thead>
           <tbody id="addContactList">
             <script>
-              let contactinfo = localStorage.getItem("localtask");
-              if (contactinfo == null) {
+              let contactInfo = localStorage.getItem("localtask");
+              if (contactInfo == null) {
                 contactDetails = [];
               } else {
-                contactDetails = JSON.parse(contactinfo);
+                contactDetails = JSON.parse(contactInfo);
               }
               let i;
               editdeleteupdate(contactDetails);
@@ -149,11 +149,11 @@
         } else {
           alert("Your form is submitted");
           let contactDetails = [];
-          let contactinfo = localStorage.getItem("localtask");
-          if (!contactinfo) {
+          let contactInfo = localStorage.getItem("localtask");
+          if (!contactInfo) {
             contactDetails = [];
           } else {
-            contactDetails = JSON.parse(contactinfo);
+            contactDetails = JSON.parse(contactInfo);
             datakeys.id = Math.random();
           }
           contactDetails.push(datakeys);
@@ -168,11 +168,11 @@
         }
       };
       function showtask() {
-        let contactinfo = localStorage.getItem("localtask");
-        if (contactinfo == null) {
+        let contactInfo = localStorage.getItem("localtask");
+        if (contactInfo == null) {
           contactDetails = [];
         } else {
-          contactDetails = JSON.parse(contactinfo);
+          contactDetails = JSON.parse(contactInfo);
         }
         editdeleteupdate(contactDetails);
       }
@@ -229,22 +229,22 @@
           } else {
             alert("Your form is completed");
             let contactDetails = [];
-            let contactinfo = localStorage.getItem("localtask");
-            if (!contactinfo) {
+            let contactInfo = localStorage.getItem("localtask");
+            if (!contactInfo) {
               contactDetails = [];
             } else {
-              contactDetails = JSON.parse(contactinfo);
+              contactDetails = JSON.parse(contactInfo);
 
-              const editdetails = localStorage.getItem("editid");
-              datakeys.id = parseInt(editdetails);
+              const editDetails = localStorage.getItem("editid");
+              datakeys.id = parseInt(editDetails);
 
-              const editvalue = contactDetails.findIndex(
+              const editValue = contactDetails.findIndex(
                 (data) => data.id === edittask
               );
-              contactDetails[editvalue].fName = enterFirstName;
-              contactDetails[editvalue].lName = enterLastName;
-              contactDetails[editvalue].countrycode = enterCountryCode;
-              contactDetails[editvalue].mobilenumber = enterNumber;
+              contactDetails[editValue].fName = enterFirstName;
+              contactDetails[editValue].lName = enterLastName;
+              contactDetails[editValue].countrycode = enterCountryCode;
+              contactDetails[editValue].mobilenumber = enterNumber;
               localStorage.setItem("localtask", JSON.stringify(contactDetails));
               document.getElementById("opendatatable").style.opacity = 1;
             }
